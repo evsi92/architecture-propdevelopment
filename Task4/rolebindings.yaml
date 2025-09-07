@@ -1,0 +1,88 @@
+# owners-domain-manager-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: owners-domain-manager-binding
+  namespace: owners
+subjects:
+  - kind: ServiceAccount
+    name: anna
+roleRef:
+  kind: Role
+  name: owners-domain-manager
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# clients-domain-manager-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: clients-domain-manager-binding
+  namespace: clients
+subjects:
+  - kind: ServiceAccount
+    name: ben
+roleRef:
+  kind: Role
+  name: clients-domain-manager
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# finance-domain-manager-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: finance-domain-manager-binding
+  namespace: finance
+subjects:
+  - kind: ServiceAccount
+    name: chris
+roleRef:
+  kind: Role
+  name: finance-domain-manager
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# secret-keys-managers-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: secret-keys-managers-binding
+subjects:
+  - kind: ServiceAccount
+    name: den
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: secret-keys-managers
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# cluster-viewer-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-viewer-binding
+subjects:
+  - kind: ServiceAccount
+    name: elen
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-viewer
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# cluster-manager-binding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-manager-binding
+subjects:
+  - kind: ServiceAccount
+    name: fedor
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-manager
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,69 @@
+# owners-domain-managers
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: owners
+  name: owners-domain-managers
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+---
+# clients-domain-managers
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: clients
+  name: clients-domain-managers
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+---
+# finance-domain-managers
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: finance
+  name: finance-domain-managers
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps"]
+    verbs: ["get", "list", "watch", "create", "update", "patch"]
+
+---
+# secret-keys-managers
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: secret-keys-managers
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "create", "update", "patch", "delete"]
+
+---
+# cluster-viewer
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-viewer
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "configmaps"]
+    verbs: ["get", "list", "watch"]
+
+---
+# cluster-manager
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-manager
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+  - nonResourceURLs: ["*"]
+    verbs: ["*"]

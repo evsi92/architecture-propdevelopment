@@ -1,0 +1,33 @@
+@startuml
+title Smart House
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(owner, "Owner", "The Apartment's Owner")
+Person(visitor, "Visitor", "The Apartment's Visitor")
+Person(car, "Car", "The Apartment's Car")
+
+System(existingApp, "Mobile Application", "Mobile Application for Owners")
+
+System_Ext(partnerSoftware, "Partner's Software", "The group of applications for smart tools support")
+System_Ext(db, "DB", "DB to cache biometry")
+
+System_Ext(videoIntercom, "Video Intercom", "The tool, which is set in the apartment group")
+System_Ext(barrier, "Barrier", "The tool, which is set in the apartment group")
+
+Rel(visitor, videoIntercom, "Uses the tool")
+Rel(car, barrier, "Uses the tool")
+Rel(owner,existingApp,"Add / Remove biometry")
+Rel(owner,existingApp,"Approve / Decline manual enter")
+
+Rel(partnerSoftware,db,"Read / Write")
+
+Rel(videoIntercom, partnerSoftware, "Validate biometry")
+Rel(barrier, partnerSoftware, "Validate biometry")
+
+Rel(existingApp, partnerSoftware, "Add / Remove biometry")
+Rel(partnerSoftware, existingApp, "Manual Validation of unknown Visitor or Car")
+
+@enduml
